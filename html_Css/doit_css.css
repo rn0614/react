@@ -1,0 +1,79 @@
+body{
+    font-family: "맑은 고딕","고딕";
+}
+header{
+    width: 80%;
+    margin-left : auto;
+    margin-right : auto;
+    background-color: #869;
+    padding : 10px;
+    overflow: hidden;
+}
+
+header nav{
+    float:right;
+}
+
+nav ul{
+    list-style-type: none;
+}
+nav ul li{
+    font-size:10em;
+    display : inline-block;
+    margin: 15px;
+    transition-property: font-size;
+    transition-duration: 2s,1s;
+}
+nav ul li:hover{
+    font-size: 20em;
+}
+
+
+nav ul li a{
+    color : white;
+    text-decoration: none;
+}
+
+
+article{
+    
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border : 5px solid #333;
+    padding : 5px;
+    overflow:hidden;
+}
+article section{
+    width: 30%;
+    height: 650px;
+    float: left;
+    margin:10px;
+    padding:5px;
+    border: 1px dotted #333;
+}
+
+article section ul{
+    display: inline-block;
+}
+
+aside{
+    clear:both;
+    margin: 0 auto;
+    width : 80%;
+    height : auto;
+    padding : 10px;
+    background-color: #99cc33;
+}
+
+footer{
+    clear: both;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    padding :10px;
+    color: white;
+    background-color: #333;
+    text-align: white;
+}
