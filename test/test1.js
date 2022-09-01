@@ -66,7 +66,7 @@ async function asyncfun(){
     let promisefun = await promisefunction;  // Promise 반환 함수에 await
 
     await new Promise((resolve,reject)=> {setTimeout(resolve,1000)});
-    alert(promisefun);
+    console.log(promisefun);
     console.log("testpoint2")
 }
 
@@ -75,27 +75,27 @@ asyncfun() // promise를 반환 Promise(return값) 형태
 
 
 // api로부터 정보를 받아오는 fetch, axios
-fetch('json형식 url')
+fetch('https://jsonplaceholder.typicode.com/todos/1')
     .then((response)=>response.json())   // json으로 가져옴
     .then((data) => console.log(data))
     .catch((e)=> console.log(e));
 
 //axios 라이브러리을 통해 받은 정보 (callback 사용 )
-axios.get('json형식 url')
-    .then((data)=>{console.log(data)})
-    .catch((e)=>{console.log(e)})
+//axios.get('https://jsonplaceholder.typicode.com/todos/1')
+//    .then((data)=>{console.log(data)})
+//    .catch((e)=>{console.log(e)})
 
 
 // async await 함수 사용시
 try{
-    const data = await axios.get('ulr');
+    const data = await axios.get('https://jsonplaceholder.typicode.com/todos/1');
 }catch{
     
 }
 
 
 // 전송 파라미터가 있을 때
-axios.get('json형식 url', {
+axios.get('https://jsonplaceholder.typicode.com/todos/1', {
     data:{
         id: 123,
         pw: 1234
@@ -107,6 +107,6 @@ axios.get('json형식 url', {
 })
 
 // 보내기, 수정, 삭제 
-axios.post().then(response=>{}).catch()
-axios.put().then((response)=>{}).catch()
-axios.delete().then(response=>{}).catch();
+//axios.post().then(response=>{}).catch()
+//axios.put().then((response)=>{}).catch()
+//axios.delete().then(response=>{}).catch();
