@@ -289,5 +289,7 @@ let filterd = filterRange(arr5,1,4);
 
 console.log(filterd);
 function filterRange(arr,minNum,maxNum){
-    return arr.filter((item)=>{return (item>=minNum && item<=maxNum)});
+    return arr.filter((item)=>(item>=minNum && item<=maxNum));
 }
+
+
