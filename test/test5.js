@@ -129,4 +129,44 @@ function fun12(){
     console.log(testNum);//2
 }
 fun12()
-console.log(testNum); //2
+console.log(testNum); //1
+
+// 함수안에 함수는 함수가 살아있을 때까지만 유효하다.
+// 렉시컬 환경 : 내부 환경
+// * 모든 함수는 함수가 생성된 곳의 렉시컬 환경을 저장한다.
+
+
+
+// function
+let sayHi = function(e){
+    alert("HI");
+};
+
+console.log(sayHi.name);   // function 의 name 파라미터는 함수 이름을 반환함
+console.log(sayHi.length);  // function 의 매개변수 개수를 반환
+
+
+// 함수선언식으로 만들었을때 자기 자신을 안에서 호출 가능
+let i=0;
+let sayMe = function funName(){
+    if(i===10) return;
+    console.log(`${i++}번째 반복`);
+    funName();
+}
+sayMe();
+
+
+function sum(a){
+    let currentSum=a;
+
+    function f(b){
+        currentSum+=b;
+        return f;
+    }
+    f.toString =function(){
+        return currentSum;
+    };
+
+    return f;
+}
+console.log(sum(1)(3)(5).toString());
