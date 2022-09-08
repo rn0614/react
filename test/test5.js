@@ -170,3 +170,156 @@ function sum(a){
     return f;
 }
 console.log(sum(1)(3)(5).toString());
+
+
+//setTimeout
+let timerId1 = setTimeout(()=> alert('hi'), 1000);
+clearTimeout(timerId1);       // 대기 상태인 settimeout을 종료
+
+//setInterval
+let timerId2 = setInterval(() =>alert('hi'),1000);
+clearInterval(timerId2);
+
+//중첩 setTimeout (종료시점에서 시간을 판단하며, 중간에 조건문으로 인터벌 간격 변경 가능)
+let timerId3 = setTimeout(function tick(){
+    console.log('출력');
+    timerId3 = setTimeout(tick,2000);
+}, 2000);
+clearTimeout(timerId3);
+
+function printNumbers(from, to){
+    let current =from;
+
+    let timerId = setInterval(()=>{
+        console.log(current);
+        if(current==to){
+            clearInterval(timerId);
+        }
+        current++
+    },1000);
+    
+}
+//printNumbers(3, 10);
+
+
+function printNumberSetTimeout(from, to){
+    let current = from;
+    function go(){
+        console.log(current);
+        if(current == to){
+            clearInterval(timerId);
+        }
+        current++;
+    }
+    go();
+    let timerId = setInterval(go,1000);
+}
+
+
+// 안정적인 함수 : 입력값이 같다면 늘 같은 결과값을 도출하는 함수
+// 캐싱을 통해 결과값을 따로 저장해 두면 빠르게 재연산 가능
+
+
+let worker ={
+    slow(min,max){
+        console.log(`min : ${min}, max : ${max}`)
+        return min+max;
+    }
+}
+
+function cachingDecorator(func, hash){
+    let cache = new Map();
+    return function(){
+        let key =hash(arguments);
+        if(cache.has(key)){
+            console.log("cache에 값이 있습니다.");
+            return cache.get(key);
+        }
+
+        // 해당 내용은 func.call(this, ...arguments) 도 사용가능
+        let result = func.apply(this, arguments); // 위에 cache에 없는 경우 함수를 재호출
+        cache.set(key,result);  
+        return result;
+    };
+}
+
+function hash(args){
+    return [].json.call(arguments);
+}
+
+console.log(worker.slow(3,5));
+
+console.log([1,2].join.call([1,2,3]))
+// 유사 배열은 배열 메소드를 못 쓰는데 apply,call을 사용시 쓸 수 있음
+
+//list = document.querySelector('li');   // 유사배열
+function getElementId(element){
+    return element.id;
+}
+
+//Array.prototype.map.call(list, getElementId);
+
+// 일반 배열은 map 함수를 사용함
+console.log([1,2,3,4].map(x=>x*2))
+
+// console.log(list.map()) 유사배열은 map 함수를 사용 못함
+
+// 유사배열인 list에 배열메서드인 map 을 적용할 수 있게됨. 이때 map 내부는 func1
+//console.log(Array.prototype.map.apply(list, func1));
+
+
+function f(x){
+    console.log(x);
+}
+
+let f1000 = delay(f,1000);
+let f1500 = delay(f,1500);
+f1000("test");
+f1500("test");
+
+function delay(f,ms){
+    return function(){     // 여기의 인자로 들어가는 "test"는 arguments에 있음
+        setTimeout(()=>f.apply(this, arguments),ms)  // 반환되는 함수의 내용.  f의 요소로
+    };
+}
+
+function f1000(){
+    setTimeout(()=>f(argument),1000);
+};
+
+// 무조건 맨 마지막 호출부터 일정시간 뒤 함수 실행. 시간 전에 호출하면 다시 맨마지막거 시간 ㅇ신
+function debounce(func, ms){
+    let timeout;
+    return function(){
+        clearTimeout(timeout);
+        timeout =setTimeout(()=>func.apply(this, arguments),ms);
+    };
+}
+
+function throttle(func, ms){       // 특정함수가 일정시간동안 한번만 실행됨
+    let isThrotteld =false,        // 처음 설정 전부 null, false
+        savedAges,
+        savedThis;
+    
+    function wrapper(){
+        if(isThrotteld){
+            savedThis = this;       
+            return;
+        }
+        
+        func.apply(this, arguments);
+
+        isThrotteld= true;
+
+        setTimeout(function(){                // 시간내에 함수를 다시 실행하지 않으면 false반환 
+            isThrotteld = false;
+            if(savedAges){
+                wrapper.apply(savedThis, savedAges);
+                savedAges =savedThis = null;
+            }
+        }, ms);
+    }
+    return wrapper;        // return wrapper 로 내부 함수를 리턴
+}
+
+throttle(f,100)     // 
