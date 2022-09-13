@@ -9,9 +9,15 @@ class Scene2 extends Phaser.Scene {
         this.background.setOrigin(0,0);
 
         // 객체 생성
-        this.ship1 = this.add.sprite(config.width/2 -50, config.height/2, "ship");
-        this.ship2 = this.add.sprite(config.width/2, config.height/2, "ship2");
-        this.ship3 = this.add.sprite(config.width/2 +50, config.height/2, "ship3");
+        this.ships=[]
+        for(let i=0; i<4;i++){
+            console.log(`Hi`);
+            this.ship = this.add.sprite(config.width/2 -Math.random()*50, config.height/2, "ship");
+            this.ships.push(this.ship)
+        }
+        //this.ship1 = this.add.sprite(config.width/2 -50, config.height/2, "ship");
+        //this.ship2 = this.add.sprite(config.width/2, config.height/2, "ship2");
+        //this.ship3 = this.add.sprite(config.width/2 +50, config.height/2, "ship3");
        
         this.powerUps = this.physics.add.group();
 
@@ -32,9 +38,12 @@ class Scene2 extends Phaser.Scene {
         }
         
         // 객체 애니메이션 삽입
-        this.ship1.play("ship1_anim");
-        this.ship2.play("ship2_anim");
-        this.ship3.play("ship3_anim");
+        for(let i=0; i<this.ships.length;i++){
+            this.ships[i].play(`ship${Math.floor(Math.random()*3)+1}_anim`);
+        }
+        //this.ship1.play("ship1_anim");
+        //this.ship2.play("ship2_anim");
+        //this.ship3.play("ship3_anim");
         
 
         //this.add.text(20,20,"Playing game",{font:"25px Arial", fill: "yellow"});
@@ -55,9 +64,13 @@ class Scene2 extends Phaser.Scene {
 
 
         this.enemies = this.physics.add.group();
-        this.enemies.add(this.ship1);
-        this.enemies.add(this.ship2);
-        this.enemies.add(this.ship3);
+
+        for(let i=0; i<this.ships.length;i++){
+            this.enemies.add(this.ships[i]);
+        }
+        //this.enemies.add(this.ship1);
+        //this.enemies.add(this.ship2);
+        //this.enemies.add(this.ship3);
         this.physics.add.overlap(this.player, this.enemies, this.hurtPlayer, null, this);
 
         this.physics.add.overlap(this.projectiles, this.enemies, this.hitEnemy, null, this);
@@ -90,6 +103,7 @@ class Scene2 extends Phaser.Scene {
     }
 
     resetShipPos(ship){
+        ship.play(`ship${Math.floor(Math.random()*3)+1}_anim`);
         ship.y=0;
         var randomX = Phaser.Math.Between(0,config.width);
         ship.x = randomX;
@@ -103,13 +117,17 @@ class Scene2 extends Phaser.Scene {
     // 실시간 활동
     update(){
         // 실시간으로 아래로 내려오는 적들
-        this.moveShip(this.ship1, 1);
-        this.moveShip(this.ship2, 2);
-        this.moveShip(this.ship3, 3);
+        for(let i=0; i<this.ships.length;i++){
+            this.moveShip(this.ships[i],1);
+            this.ships[i].setInteractive();
+        }
+        //this.moveShip(this.ship1, 1);
+        //this.moveShip(this.ship2, 2);
+        //this.moveShip(this.ship3, 3);
 
-        this.ship1.setInteractive();
-        this.ship2.setInteractive();
-        this.ship3.setInteractive();
+        //this.ship1.setInteractive();
+        //this.ship2.setInteractive();
+        //this.ship3.setInteractive();
 
         this.input.on('gameobjectdown', this.destroyShip, this);
 
