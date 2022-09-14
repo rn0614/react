@@ -211,8 +211,12 @@ class Scene2 extends Phaser.Scene {
         projectiles.destroy();
         this.resetShipPos(enemy);
         this.score +=15;
+        if(this.score>20){
+            
+        }
         var scoreFormated = this.zeroPad(this.score, 6);
         this.scoreLabel.text = "SCORE " + scoreFormated;
+        
     }
 
     zeroPad(number, size){
