@@ -88,3 +88,39 @@ let promise = new Promise(function(resolve, reject){
 // promise 객체의 내부 프로퍼티
 // state => 대기/성공/실패 : pending/ fulfilled/ rejected
 // result => 대기/성공/실패 : undefined / value / error
+
+// promise 객체는 바로실행됨
+promise.then(console.log);
+
+
+// promise 작성
+function loadScript4(src){
+    return new Promise(function(resolve, reject){
+        let script = document.createElement('script');
+        script.src = src;
+
+        script.onload = ()=>resolve(script);
+        script.onerror = ()=>reject(new Error(`${src}를 불러오는 도중에 에러가 발생함`));
+
+        document.head.append(script);
+    });
+}
+
+let promise2 = loadScript4("https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js");
+
+promise.then(
+    script =>console.log(`${script.src}를 불러왔습니다.`),
+    error => console.log(`Error: ${error.message}를 불러왔습니다.`)
+)
+
+promise.then(script => console.log('또다른 핸들러'))
+
+
+//
+
+function delay(ms){
+    return new Promise((resolve, reject)=>{
+        setTimeout(resolve,ms);
+    });
+}
+delay(3000).then(()=>alert('3초 후 실행'))
