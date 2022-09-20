@@ -116,8 +116,7 @@ promise.then(
 promise.then(script => console.log('또다른 핸들러'))
 
 
-//
-
+// promise
 function delay(ms){
     return new Promise((resolve, reject)=>{
         setTimeout(resolve,ms);
