@@ -123,3 +123,21 @@ function delay(ms){
     });
 }
 delay(3000).then(()=>alert('3초 후 실행'))
+
+
+// Primise Chaining
+new Promise(function(){
+    setTimeout(()=>{
+        console.log("1번");
+        resolve(1);   
+    }, 1000)
+}).then(function(result){
+    console.log(result);
+    return result*2
+}).then(function(result){
+    console.log(result);
+    return result*2
+}).then(function(result){
+    console.log(result);
+    return result*2
+})
