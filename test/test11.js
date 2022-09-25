@@ -126,14 +126,14 @@ delay(3000).then(()=>alert('3초 후 실행'))
 
 
 // Primise Chaining
-new Promise(function(){
+new Promise(function(resolve, reject){
     setTimeout(()=>{
         console.log("1번");
         resolve(1);   
     }, 1000)
-}).then(function(result){
-    console.log(result);
-    return result*2
+}).then(function(result1){
+    console.log(result1);
+    return result1*2
 }).then(function(result){
     console.log(result);
     return result*2
@@ -141,3 +141,17 @@ new Promise(function(){
     console.log(result);
     return result*2
 })
+
+// Promise 바로 안에 함수는 resolve, reject 를 함수로 가짐.
+// then 의 함수는 result, error 함수를 가짐
+
+// 내부 함수가 받는 인수값이 각각 2개인 것을 알 수 있음.
+
+
+// Promise.all
+Promise.all([
+    new Promise(resolve => setTimeout(()=>resolve(1),3000)),
+    new Promise(resolve => setTimeout(()=>resolve(2),4000)),
+    new Promise(resolve => setTimeout(()=>resolve(3),1000)),
+    10 //단순 값도 전달 가능
+]).then(console.log(result));
