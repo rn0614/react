@@ -43,13 +43,54 @@ async function f3(){
 
 
 async function loadJson(url){
-    try{
-        let response = await fetch(url);
-        if(response.status ==200) return response.json();
-    }catch{
-        throw new Error(response.status);
-    } 
+    let response = await fetch(url);
+    if (response.status ==200) return await response.json();
+
+    throw new Error(response.status);
 }
+
 loadJson('no-such-user.json')
-.catch(alert);   // 왜 이게 안되지?
+.catch(console.log);        //  위 함수에서  error 발생시 실행될 구문
+
+
+
 console.log("qq")
+
+
+class HttpError extends Error {
+    constructor(response) {
+      super(`${response.status} for ${response.url}`);
+      this.name = 'HttpError';
+      this.response = response;
+    }
+  }
+  
+  async function loadJson2(url) {
+    let response = await fetch(url);
+    if(response.status ==200) return await response.json();
+    
+    throw new HttpError(response);
+  }
+  
+  // 유효한 사용자를 찾을 때까지 반복해서 username을 물어봄
+  async function demoGithubUser() {
+    let user;
+    while(true){
+        let name = prompt("GitHub username을 입력하세요.", "iliakan");
+
+        try{
+            user = await loadJson2(`https://api.github.com/users/${name}`);
+            break;
+        }catch(err){
+            if (err instanceof HttpError && err.response.status ==404){
+                alert("일치하는 사람이 없습니다. 다시 입력 바랍니다.");
+            }else{
+                throw err; // 알수 없는 에러의 경우 외부로 던지기
+            }
+        }
+    }
+  }
+  
+  demoGithubUser();
+
+  
