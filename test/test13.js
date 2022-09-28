@@ -19,6 +19,7 @@ f()
 function* generateSequence(){
     yield 1;
     yield 2;
+    //return 3;
     yield 3;
 }
 
@@ -37,5 +38,21 @@ console.log(three);       //{value: 3, done: true}
 generator = generateSequence();
 
 for(let value of generator){
-    console.log(value); 
+    console.log(value);  // 1,2,3
 }
+
+let sequence = [0, ...generateSequence()];  // 0,1,2,3
+
+
+// import는 한 js에서 한번만가능함
+//import {sayHi, admin} from './testModule.js';
+
+sayHi();  //sayHi function   html 에 <script type="module"> 필요
+
+console.log(admin);
+console.log(import.meta);
+
+// webpack 같이 번들링 과정을 거치면 type="module" 없이도 사용 가능
+
+import { sayHi as hi } from "./testModule.js";
+hi('John') // 약어 사용가능
