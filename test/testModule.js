@@ -34,3 +34,6 @@ export default class User {
 
 // default는 이름 없어도 됨
 // export default class {...} 식으로 사용 가능   
+
+
+// 기초 종료
