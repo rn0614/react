@@ -21,6 +21,6 @@ function charCount(string1){
     }
     
     return result;
-}
+} 
 
 console.log(charCount("aabbsdwaa!!!W$#@"));
