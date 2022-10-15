@@ -18,9 +18,26 @@ function charCount(string1){
         else{
             result[w]=1;
         }
+        // 줄임형 있으면 ++ 없으면 1
+        //result[w] = ++result[w] || 1; 
     }
     
     return result;
 } 
 
 console.log(charCount("aabbsdwaa!!!W$#@"));
+
+
+function charCount2(str){
+    var obj={};
+    for (var char of str){
+        char = char.toLowerCase();
+        if(/[a-z0-9]/.test(char)){
+            obj[char]= ++obj[char] || 1;
+        }
+    }
+    return obj;
+}
+
+
+Array.from({length:n}, (_,i)=>i+1);
