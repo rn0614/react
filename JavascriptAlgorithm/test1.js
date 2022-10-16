@@ -41,3 +41,17 @@ function charCount2(str){
 
 
 Array.from({length:n}, (_,i)=>i+1);
+Array(n).fill(1).map((v,i)=> v+i);
+
+
+function solution(my_string) {
+    var answer = [];
+    answer=my_string.match(/[0-9]/g).map(Number).sort()
+    return answer;
+}
+
+
+function solution(array) {
+    let max = Math.max(...array);
+    return [max, array.indexOf(max)];
+}
