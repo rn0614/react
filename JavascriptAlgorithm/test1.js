@@ -55,3 +55,80 @@ function solution(array) {
     let max = Math.max(...array);
     return [max, array.indexOf(max)];
 }
+
+
+function solution(array) {
+    return array.join('').split('7').length-1;
+}
+
+function solution(array) {
+    return array.join("").match(/7/g)?.length || 0;
+}
+
+function gcd(a,b){ 
+    return b ? gcd(b, a%b) : a; 
+  }
+
+
+  function solution(num_list, n) {
+    var answer = [];
+    while(num_list.length) {
+        answer.push(num_list.splice(0,n));
+    }
+    return answer;
+}
+
+
+function isPrime(N) {
+    // 1은 소수가 아니다.
+    if (N === 1) return false;
+    // 2부터 N제곱근까지의 수로 N을 나눴을 때
+    for (let i = 2; i <= Math.sqrt(N); i++) {
+      // 나누어 떨어지는 경우가 한 번이라도 있으면 N은 소수가 아니다.
+      if (N % i === 0) return false;
+    }
+    // 모두 나누어 떨어지지 않으면 N은 소수이다.
+    return true;
+  }
+
+
+  function solution(s) {
+    let res = [];
+    for (let c of s) if (s.indexOf(c) === s.lastIndexOf(c)) res.push(c);
+    return res.sort().join('');
+}
+
+
+var solution=s=>[...s].filter(c=>s.match(new RegExp(c,'g')).length==1).sort().join('')
+
+function solution(array, n) {
+    var answer = [];
+    answer = array.map(a=> [Math.abs(n-a),a]).sort((a,b)=>a[0]-b[0]||a[1]-b[1])[0][1]
+    return answer;
+}
+
+
+function getCombinations(arr, N) {
+    const results = [];
+    if (N === 1) return arr.map((value) => [value]);
+  
+    arr.forEach((fixed, index, origin) => {
+      const rest = origin.slice(index + 1);
+      // 해당하는 fixed를 제외한 나머지 뒤
+      const combinations = getCombinations(rest, N - 1);
+      // 나머지에 대해서 조합을 구한다.
+      const attached = combinations.map((combination) => [fixed, ...combination]);
+      // 돌아온 조합에 떼 놓은(fixed) 값 붙이기
+      results.push(...attached);
+    });
+  
+    return results;
+  }
+
+
+  function solution(balls, share) {
+    return (
+      Array.from({ length: share }, (_, i) => balls - i).reduce((a, b) => a * b) /
+      Array.from({ length: share }, (_, i) => share - i).reduce((a, b) => a * b)
+    );
+  }
