@@ -132,3 +132,48 @@ function getCombinations(arr, N) {
       Array.from({ length: share }, (_, i) => share - i).reduce((a, b) => a * b)
     );
   }
+
+
+
+  // 소수구하기
+function isPrinme(N){
+    if(N==1) return false;
+    for(var i=2; i< Math.sqrt(N); i++){
+        if(N%i==0) return false;
+    }
+    return true;
+}
+
+// 최대공약수
+function gcd(a,b){
+    return b ? gcd(b, a%b):a
+}
+
+// 약수 리스트
+function getDivision(N){
+    var divisions=[];
+    for(let i=1 ; i<=Math.sqrt(N);i++){
+        if(N%i==0){
+            divisions.push(i);
+            if(N/i !=i) divisions.push(N/i);
+        }
+    }
+    divisions.sort((a,b)=>a-b)
+    return divisions;
+}
+
+//object to list
+Object.entries(list)
+
+// list to Object ['a','b','c']
+Object.assign({}, ['a','b','c']); // {0:"a", 1:"b", 2:"c"}
+
+// list to Object [[key,value],[key,value]]
+for(entry of list){
+    obj[entry[0]]=entry[1]
+}
+
+//list count  ['a','b','a']
+for(s of list){
+    obj[s]=++obj[s]||1;   // {'a':2 , 'b':1}
+}
