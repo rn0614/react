@@ -177,3 +177,9 @@ for(entry of list){
 for(s of list){
     obj[s]=++obj[s]||1;   // {'a':2 , 'b':1}
 }
+
+
+
+
+// 재귀함수
+// 종료조건. return 입력값의 변화
