@@ -108,22 +108,53 @@ function solution(array, n) {
 }
 
 
-function getCombinations(arr, N) {
-    const results = [];
+
+function solution(s) {
+    let numbers = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+    var answer = s;
+
+    for(let i=0; i< numbers.length; i++) {
+        let arr = answer.split(numbers[i]);
+        answer = arr.join(i);
+    }
+
+    return Number(answer);
+}
+
+
+function getCombinations(arr,N){
+    const results=[];
     if (N === 1) return arr.map((value) => [value]);
-  
-    arr.forEach((fixed, index, origin) => {
-      const rest = origin.slice(index + 1);
+    for(const [fixed,index] of arr.entries()){
+      const rest = arr.slice(index + 1);
       // 해당하는 fixed를 제외한 나머지 뒤
       const combinations = getCombinations(rest, N - 1);
       // 나머지에 대해서 조합을 구한다.
       const attached = combinations.map((combination) => [fixed, ...combination]);
       // 돌아온 조합에 떼 놓은(fixed) 값 붙이기
       results.push(...attached);
-    });
-  
+    }
     return results;
-  }
+}
+
+  const getPermutations = function (arr, selectNumber) {
+    const results = [];
+    if (selectNumber === 1) return arr.map((el) => [el]); 
+    // n개중에서 1개 선택할 때(nP1), 바로 모든 배열의 원소 return. 1개선택이므로 순서가 의미없음.
+
+    arr.forEach((fixed, index, origin) => {
+      const rest = [...origin.slice(0, index), ...origin.slice(index+1)] 
+      // 해당하는 fixed를 제외한 나머지 배열 
+      const permutations = getPermutations(rest, selectNumber - 1); 
+      // 나머지에 대해서 순열을 구한다.
+      const attached = permutations.map((el) => [fixed, ...el]); 
+      //  돌아온 순열에 떼 놓은(fixed) 값 붙이기
+      results.push(...attached); 
+      // 배열 spread syntax 로 모두다 push
+    });
+
+    return results; // 결과 담긴 results return
+}
 
 
   function solution(balls, share) {
@@ -132,6 +163,43 @@ function getCombinations(arr, N) {
       Array.from({ length: share }, (_, i) => share - i).reduce((a, b) => a * b)
     );
   }
+
+  // 떨어진 값 순서 중복제거 배열 [1,2,3,3,3,1,1,1]  => [1,2,3,1]
+function solution(arr){
+    return arr.filter((val,index) => val != arr[index+1]);
+}
+
+// 진수변환 toString(n) : 10진수 -> n진수
+//          parseInt(number,n)  : n진수 -> 10진수
+function solution(n) {
+    var answer = parseInt(n.toString(3).split("").reverse().join(""),3)
+    return answer;
+}
+
+// '문자'.charCoddeAt(0),  String.fromCharCode(코드)
+function solution(s, n) {
+    var answer = '';
+    var tempCharCode=0;
+    for(w of s){
+        tempCharCode = w.charCodeAt(0)
+        if(w===' '){
+            answer+=' '
+        }else if(tempCharCode<=90&&tempCharCode>=65){
+            answer+=String.fromCharCode((tempCharCode+n<=90)?w.charCodeAt(0)+n:w.charCodeAt(0)+n-26)
+        }else{
+            answer+=String.fromCharCode((tempCharCode+n<=122)?w.charCodeAt(0)+n:w.charCodeAt(0)+n-26)
+        }
+    }
+    return answer;
+}
+
+// 2중배열 arr1, arr2 중 하나라도 1인경우 찾기
+function solution(n, arr1, arr2) {
+    var answer = arr1.map((a,i)=> (a|arr2[i]).toString(2).padStart(n,0).replace(/0/g,' ').replace(/1/g,'#'))
+    
+    return answer;
+}
+
 
 
 
@@ -173,13 +241,20 @@ for(entry of list){
     obj[entry[0]]=entry[1]
 }
 
+// list to Set
+var set1 = new Set(list);
+
+// Set to list
+[...set1]
+
+
 //list count  ['a','b','a']
 for(s of list){
     obj[s]=++obj[s]||1;   // {'a':2 , 'b':1}
 }
 
-
-
+// 이중배열 생성
+var answer = Array.from(Array(arr1.length), () => new Array(arr1[0].length));
 
 // 재귀함수
 // 종료조건. return 입력값의 변화
