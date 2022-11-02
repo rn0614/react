@@ -125,7 +125,7 @@ function solution(s) {
 function getCombinations(arr,N){
     const results=[];
     if (N === 1) return arr.map((value) => [value]);
-    for(const [fixed,index] of arr.entries()){
+    for(const [index,fixed] of arr.entries()){
       const rest = arr.slice(index + 1);
       // 해당하는 fixed를 제외한 나머지 뒤
       const combinations = getCombinations(rest, N - 1);
@@ -136,6 +136,7 @@ function getCombinations(arr,N){
     }
     return results;
 }
+
 
   const getPermutations = function (arr, selectNumber) {
     const results = [];
@@ -204,9 +205,9 @@ function solution(n, arr1, arr2) {
 
 
   // 소수구하기
-function isPrinme(N){
+function isPrime(N){
     if(N==1) return false;
-    for(var i=2; i< Math.sqrt(N); i++){
+    for(var i=2; i<= Math.sqrt(N); i++){
         if(N%i==0) return false;
     }
     return true;
