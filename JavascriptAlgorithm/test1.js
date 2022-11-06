@@ -264,4 +264,4 @@ var answer = Array.from(Array(arr1.length), () => new Array(arr1[0].length));
 // 정규식
 string1.match(/\d/g)
 string1.test(/\d/g)
-string1.split(/\d/g)
+string1.split(/\d/g) 
