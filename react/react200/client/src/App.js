@@ -1,4 +1,5 @@
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.css';
 //import ImportComponent from './R003_ImportComponent';
 //import LifeCycleEx from './R004_LifeCycleEx';
 //import LifeCycleEx from './R005_LifeCycleEx';
@@ -10,7 +11,12 @@ import './App.css';
 //import Jquery from './R016_Jquery'
 //import PropsDatatype from './R018_PropsDatatype'
 //import PropsObjVal from './R020_PropsObjVal';
-import PropsNode from './R023_PropsNode';
+//import PropsNode from './R023_PropsNode';
+//import ReactState from './R024_ReactState';
+//import FunctionComponent from './R030_FunctionComponent';
+//import ReactstrapAlerts from './R034_ReactstrapAlerts';
+//import ReactstrapCard from './R040_ReactstrapCard';
+import Navbar from './R048_ReactstrapNavbar'
 
 // react 첫 페이지 적용하는 곳
 function App() {
@@ -18,9 +24,9 @@ function App() {
     <div className="App">
       <h1>Start React</h1>
       <p>HTML적용단</p>
-      <PropsNode>
-        <span>node from App.js</span>
-      </PropsNode>
+      <Navbar/>
+      <p>nav 밑에 있는것</p>
+      {/* <ReactState reactString = {"react"}/> */}
       {/* <PropsDatatype
         String="react"
         Number={200}
