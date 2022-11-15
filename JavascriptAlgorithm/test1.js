@@ -232,7 +232,7 @@ function getDivision(N){
 }
 
 //object to list
-Object.entries(list)
+Object.entries(obj)
 
 // list to Object ['a','b','c']
 Object.assign({}, ['a','b','c']); // {0:"a", 1:"b", 2:"c"}
