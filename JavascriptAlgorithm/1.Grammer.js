@@ -65,4 +65,28 @@ Math.round(number*100)/100
 
 // 2중 배열 생성
 const twoDeptArray = Array.from(Array(3), () => new Array(2)); // 3열 2행
-console.log(twoDeptArray)
+
+// String to array
+stringALpha.split("");
+
+// array to String
+array.join("");
+
+// array 끼리 비교하기
+if([1,2,3].toString()===[1,2,3].toString()){
+    console.log(true);
+}
+
+// 10진법 -> N진법   number.toString(N)
+number.toString(3);
+
+// N진법 -> 10진법 parseInt(string,N);
+parseInt(stringNum,3);
+
+
+// 문자열 특정 구간 자르기 (빈공백이고 해당 인덱스가 없으면 빈공백 반환
+stringALpha.substring(1,2);
+
+stringALpha.charAt(0);  //s.split(" ").map(v => v.charAt(0).toUpperCase() + v.substring(1).toLowerCase()).join(" ");
+
+

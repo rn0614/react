@@ -36,3 +36,5 @@ function countReturn(array){
     }
     return tempObj;
 }
+
+)
