@@ -37,4 +37,12 @@ function countReturn(array){
     return tempObj;
 }
 
-)
+
+// 앞 배열에서 없는 요소 추가하기 arrray2 =[[1],[1,3],[1,5,3]]
+// [1,3,5]
+var array2=[[1],[1,3],[1,5,3]]
+array2.reduce((acc, cur) =>[...acc, ...cur.filter((it) => !acc.includes(it))], []);
+
+
+// 무조건 하나 이상을 가지고 있는 경우의 수 [[3,1],[2]]    => [1],[2],[3],[3,2],[1,2]   
+var caseArray =Object.values(obj).reduce((a,b) =>a*(b+1),1)-1

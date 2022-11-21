@@ -90,3 +90,28 @@ stringALpha.substring(1,2);
 stringALpha.charAt(0);  //s.split(" ").map(v => v.charAt(0).toUpperCase() + v.substring(1).toLowerCase()).join(" ");
 
 
+// 로그함수
+var k = Math.log(10)/ Math.log(2); // log2(10)
+
+
+var array2=[5,6,7,8]
+console.log(array.filter(w=>w>2));
+console.log(...array2,...array.filter(w=>w>2));  // 앞에 배열에다가 뒤에 필터를 더하게 된다
+
+// value값만 array 형태 뽑기
+Object.values(obj);
+
+// Object to array
+Object.entries(obj);
+
+var answer = [0];
+var restDay = progresses.map((w,idx)=>Math.ceil((100-w)/speeds[idx]));
+var tempcur=restDay[0];
+for(var i=0, j=0; i<restDay.length; i++){
+    if(tempcur>=restDay[i]){
+        answer[j]+=1;
+    }else{
+        tempcur=restDay[i];
+        answer[++j]=1;
+    }
+}
