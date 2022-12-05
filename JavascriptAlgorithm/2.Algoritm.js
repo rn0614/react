@@ -46,3 +46,18 @@ array2.reduce((acc, cur) =>[...acc, ...cur.filter((it) => !acc.includes(it))], [
 
 // 무조건 하나 이상을 가지고 있는 경우의 수 [[3,1],[2]]    => [1],[2],[3],[3,2],[1,2]   
 var caseArray =Object.values(obj).reduce((a,b) =>a*(b+1),1)-1
+
+
+// 가장 큰 수부터 다음 큰 수까지의 거리 재기
+// [6,1,2,9,4,5,12,1]  => [3,3,2]
+var answer = [0];
+    var restDay = progresses.map((w,idx)=>Math.ceil((100-w)/speeds[idx]));
+    var tempcur=restDay[0];
+    for(var i=0, j=0; i<restDay.length; i++){
+        if(tempcur>=restDay[i]){
+            answer[j]+=1;
+        }else{
+            tempcur=restDay[i];
+            answer[++j]=1;
+        }
+    }
