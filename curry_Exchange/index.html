@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  </head>
+  <body>
+    <div class="exchange-box">
+      <div class="w3-dropdown-hover">
+        <button class="w3-button" id="from-btn">USD</button>
+        <div class="w3-dropdown-content w3-bar-block w3-border" id="from-currency-list">
+          <a href="#" class="w3-bar-item w3-button">USD</a>
+          <a href="#" class="w3-bar-item w3-button">KRW</a>
+          <a href="#" class="w3-bar-item w3-button">VND</a>
+        </div>
+      </div>
+      <div class="inpu-area">
+        <input type="number" id="from-input" onkeyup="convert(this.id)"/>
+        <div>달러</div>
+      </div>
+    </div>
+    <h1>=</h1>
+    <div class="exchange-box">
+        <div class="w3-dropdown-hover">
+          <button class="w3-button" id="to-btn">USD</button>
+          <div class="w3-dropdown-content w3-bar-block w3-border" id="to-currency-list"> 
+            <a href="#" class="w3-bar-item w3-button">USD</a>
+            <a href="#" class="w3-bar-item w3-button">KRW</a>
+            <a href="#" class="w3-bar-item w3-button">VND</a>
+          </div>
+        </div>
+        <div class="inpu-area">
+          <input type="number" id="to-input" onkeyup="convert(this.id)"/>
+          <div>달러</div>
+        </div>
+      </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
