@@ -53,3 +53,32 @@ function convert(val){
         document.querySelector("#from-input").value = convertedAmount; 
     }
 } 
+
+
+
+function solution(want, number, discount) {
+    var answer = 0;
+    var wantObj ={};
+    for(var i=0; i<want.length; i++){
+        wantObj[want[i]]= number[i]
+    }
+    let obj={};
+    let curr=discount.slice(0,10);
+    for(c of curr){
+        obj[c]=++obj[c]||1
+    }
+    // 초기 데이터로 한번 실행
+    if(Object.entries(wantObj).every(w=>obj[w[0]]>=w[1])){
+        answer+=1
+    }
+    // 하나씩 바꾸면서 실행
+    for(var i=0; i<discount.length-10;i++){
+        // 처음 것 제거 및 10번째 것 추가
+        obj[discount[i]]=--obj[discount[i]]||0;
+        obj[discount[i+10]]=++obj[discount[i+10]]||1;
+        if(Object.entries(wantObj).every(w=>obj[w[0]]>=w[1])){
+            answer+=1
+        }
+    }
+    return answer;
+}
